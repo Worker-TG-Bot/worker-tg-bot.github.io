@@ -20,7 +20,7 @@ export const config = {
   projects: [
     {
       title: "AI生成GitHub主页",
-      url: "https://myedge.loushi.ccwu.cc",
+      url: "https://myedge.loushi.ccwu.cc/",
       display: "myedge.loushi.ccwu.cc",
       description: "使用 AI 自动生成个性化 GitHub 个人主页"
     },
