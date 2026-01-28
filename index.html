@@ -3,227 +3,213 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>星霜の项目集 | xingshuang</title>
+  <title></title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
   <style>
     :root {
-      --bg: #0a0a15;
-      --bg-glow: #120d1f;
-      --card: #141926;
-      --card-hover: #1e2135;
-      --accent: #7c3aed;
-      --accent-light: #a78bfa;
-      --accent-dark: #5b21b6;
-      --text: #e0e7ff;
-      --text-secondary: #a0aec0;
-      --border: #2d2b45;
-      --glow: rgba(124, 58, 237, 0.12);
-      --glow-strong: rgba(124, 58, 237, 0.25);
+      /* 温暖的奶油色调 */
+      --bg: #faf8f5;
+      --bg-secondary: #f5f3ef;
+      
+      /* 卡片色 */
+      --card: #ffffff;
+      --card-hover: #fefefe;
+
+      /* 强调色：温暖的橙棕色 */
+      --accent: #c97645;
+      --accent-light: #d88f61;
+      --accent-dark: #b05e2f;
+
+      /* 文字色 */
+      --text: #2a2826;
+      --text-secondary: #6b6662;
+      --text-tertiary: #9a9591;
+
+      /* 边框 */
+      --border: #e8e5e0;
+      --border-hover: #d4cfc7;
+
+      /* 阴影 */
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-hover: 0 4px 16px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
 
-    ::-webkit-scrollbar { width:8px; }
+    ::-webkit-scrollbar { width:10px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
-    ::-webkit-scrollbar-thumb { background:var(--accent); border-radius:4px; }
-    ::-webkit-scrollbar-thumb:hover { background:var(--accent-light); }
+    ::-webkit-scrollbar-thumb { background:var(--accent); border-radius:5px; }
+    ::-webkit-scrollbar-thumb:hover { background:var(--accent-dark); }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Georgia', 'Noto Serif SC', serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
+      line-height: 1.7;
     }
-
-    body::before, body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-    }
-    body::before { background: radial-gradient(ellipse at 20% 30%, var(--glow) 0%, transparent 60%); }
-    body::after  { background: radial-gradient(ellipse at 80% 70%, var(--glow) 0%, transparent 65%); }
 
     .container {
-      max-width: 1180px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 3rem 1.5rem 5rem;
-      position: relative;
-      z-index: 1;
+      padding: 2rem 2rem 6rem;
     }
 
-    header { text-align: center; padding: 7rem 0 5rem; }
-    h1 {
-      font-size: clamp(3.2rem, 8vw, 5.2rem);
-      font-weight: 900;
-      letter-spacing: -2px;
-      background: linear-gradient(90deg, #c084fc, #a78bfa, #7c3aed, #a78bfa, #c084fc);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientFlow 12s linear infinite;
-      margin-bottom: 1rem;
+    header { 
+      text-align: center; 
+      padding: 5rem 0 3rem;
+      margin-bottom: 3rem;
     }
-    @keyframes gradientFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 400;
+      letter-spacing: -1px;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+      font-family: 'Playfair Display', 'Noto Serif SC', serif;
+    }
 
     .subtitle {
-      font-size: 1.35rem;
+      font-size: 1rem;
       color: var(--text-secondary);
-      opacity: 0.92;
-      letter-spacing: 1.5px;
-      font-weight: 300;
+      letter-spacing: 2px;
+      font-weight: 400;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
+
+    .site-info {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 0 auto 3.5rem;
+      max-width: 1100px;
+      padding: 2rem 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .site-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      color: var(--accent-dark);
+      font-weight: 600;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .site-info p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .site-info p:last-child { margin-bottom: 0; }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 1.8rem;
-      margin: 4rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
     }
 
     .card {
       background: var(--card);
-      border-radius: 1.2rem;
-      overflow: hidden;
       border: 1px solid var(--border);
-      transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+      border-radius: 8px;
+      transition: all 0.35s ease;
+      box-shadow: var(--shadow);
       position: relative;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 8px 32px -12px rgba(0,0,0,0.4);
     }
 
     .card:hover {
-      transform: translateY(-14px) scale(1.02);
+      transform: translateY(-3px);
       border-color: var(--accent);
-      box-shadow: 0 28px 50px -18px var(--glow-strong);
-      background: var(--card-hover);
+      box-shadow: var(--shadow-hover);
     }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 0%, var(--glow) 100%);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-    }
-    .card:hover::before { opacity: 0.7; }
-
-    .card-content {
-      padding: 2.2rem 2rem;
-      position: relative;
-      z-index: 2;
+    .card-content { 
+      padding: 2rem 1.8rem;
     }
 
     .project-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+      font-weight: 600;
       color: var(--text);
-      letter-spacing: -0.3px;
+      margin-bottom: 0.8rem;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     .project-desc {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 1.3rem;
-      opacity: 0.9;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
     }
 
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      color: var(--accent-light);
+    .project-link, .multi-links a {
+      color: var(--accent);
       text-decoration: none;
       font-weight: 500;
-      font-size: 1.05rem;
-      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      border-bottom: 2px solid transparent;
     }
 
-    .project-link span {
-      position: relative;
-      transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+    .project-link:hover, .multi-links a:hover {
+      color: var(--accent-dark);
+      border-bottom-color: var(--accent);
     }
 
-    .project-link:hover span { transform: translateX(8px); }
-
-    .project-link::after {
+    .project-link::after, .multi-links a::after {
       content: '→';
-      margin-left: 0.6rem;
-      font-weight: bold;
-      transition: all 0.3s;
+      margin-left: 0.4rem;
+      transition: transform 0.25s ease;
     }
 
-    .project-link:hover::after {
-      transform: translateX(6px);
-      opacity: 0.8;
+    .project-link:hover::after, .multi-links a:hover::after {
+      transform: translateX(4px);
     }
 
     .multi-links {
-      margin-top: 1.2rem;
+      margin-top: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
     }
 
-    .multi-links a {
-      color: var(--accent-light);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1.05rem;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .multi-links a:hover {
-      color: var(--accent);
-      transform: translateX(6px);
-    }
-
-    .multi-links a::after {
-      content: '→';
-      margin-left: 0.6rem;
-      transition: all 0.3s;
-    }
-
-    .multi-links a:hover::after {
-      transform: translateX(6px);
-      opacity: 0.8;
-    }
-
     footer {
       text-align: center;
       padding: 5rem 0 3rem;
-      color: var(--text-secondary);
-      font-size: 0.98rem;
-      opacity: 0.85;
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
     }
 
     .github-link {
-      color: var(--accent-light);
+      color: var(--accent);
       text-decoration: none;
-      transition: color 0.3s;
+      transition: color 0.25s;
+      font-weight: 500;
     }
 
-    .github-link:hover { color: var(--accent); }
+    .github-link:hover { 
+      color: var(--accent-dark); 
+    }
 
     @media (max-width: 768px) {
-      header { padding: 5rem 0 3.5rem; }
-      h1 { font-size: 3.4rem; }
-      .projects-grid { gap: 1.4rem; }
-      .card-content { padding: 1.8rem 1.6rem; }
-    }
-
-    @media (max-width: 480px) {
-      .container { padding: 2rem 1rem 4rem; }
-      .projects-grid { grid-template-columns: 1fr; }
+      header { padding: 3rem 0 2rem; }
+      h1 { font-size: 2.5rem; }
+      .projects-grid { 
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
+      }
+      .card-content { padding: 1.8rem 1.5rem; }
+      .site-info { padding: 1.8rem; }
     }
   </style>
 </head>
@@ -232,16 +218,16 @@
 <div class="container">
 
   <header>
-    <h1>星霜の项目集</h1>
-    <div class="subtitle">实验 · 工具 · 玩具 · 以及一些深夜的灵感</div>
+    <h1></h1>
+    <div class="subtitle"></div>
   </header>
 
   <main class="projects-grid"></main>
 
   <footer>
-    <p>© 2025–<script>document.write(new Date().getFullYear())</script> xingshuang • Powered by Cloudflare</p>
+    <p>© <span id="copyright-start"></span>–<span id="current-year"></span> xingshuang • Powered by Cloudflare</p>
     <p style="margin-top:1rem;">
-      <a href="https://github.com/xiaobaiweinuli" target="_blank" class="github-link">GitHub@星霜</a>
+      <a id="github-link" href="#" target="_blank" class="github-link"></a>
     </p>
   </footer>
 
@@ -250,45 +236,61 @@
 <script type="module">
   import { config } from './config.js';
 
-  // 动态设置标题和副标题
+  document.title = `${config.siteTitle} | xingshuang`;
+
   document.querySelector('h1').textContent = config.siteTitle;
   document.querySelector('.subtitle').textContent = config.siteSubtitle;
 
-  // 动态生成项目卡片
-  const grid = document.querySelector('.projects-grid');
-  grid.innerHTML = '';
+  if (config.copyrightStartYear) {
+    document.getElementById('copyright-start').textContent = config.copyrightStartYear;
+  }
+  document.getElementById('current-year').textContent = new Date().getFullYear();
 
+  const githubLink = document.getElementById('github-link');
+  if (config.githubUsername) {
+    githubLink.href = `https://github.com/${config.githubUsername}`;
+    githubLink.textContent = `GitHub@${config.githubUsername}`;
+  }
+
+  if (config.siteInfo?.enabled) {
+    let hasContent = config.siteInfo.title || (config.siteInfo.paragraphs && config.siteInfo.paragraphs.length > 0);
+
+    if (hasContent) {
+      const infoContainer = document.createElement('div');
+      infoContainer.className = 'site-info';
+
+      let html = '';
+      if (config.siteInfo.title) html += `<h3>${config.siteInfo.title}</h3>`;
+      if (config.siteInfo.paragraphs && Array.isArray(config.siteInfo.paragraphs)) {
+        config.siteInfo.paragraphs.forEach(p => html += `<p>${p}</p>`);
+      }
+      infoContainer.innerHTML = html;
+
+      document.querySelector('header').insertAdjacentElement('afterend', infoContainer);
+    }
+  }
+
+  const grid = document.querySelector('.projects-grid');
   config.projects.forEach(project => {
     const card = document.createElement('div');
     card.className = 'card';
 
     let linksHTML = '';
-
     if (project.links && project.links.length > 0) {
-      // 多链接
       linksHTML = '<div class="multi-links">';
       project.links.forEach(link => {
-        linksHTML += `
-          <a href="${link.url}" target="_blank" rel="noopener">
-            <span>${link.display}</span>
-          </a>
-        `;
+        linksHTML += `<a href="${link.url}" target="_blank" rel="noopener"><span>${link.display}</span></a>`;
       });
       linksHTML += '</div>';
-    } else {
-      // 单链接（或无链接时不显示）
-      if (project.url) {
-        linksHTML = `
-          <a href="${project.url}" target="_blank" rel="noopener" class="project-link">
-            <span>${project.display || project.url.replace(/^https?:\/\/(www\.)?/, '')}</span>
-          </a>
-        `;
-      }
+    } else if (project.url) {
+      linksHTML = `
+        <a href="${project.url}" target="_blank" rel="noopener" class="project-link">
+          <span>${project.display || project.url.replace(/^https?:\/\//, '')}</span>
+        </a>
+      `;
     }
 
-    const descHTML = project.description
-      ? `<div class="project-desc">${project.description}</div>`
-      : '';
+    const descHTML = project.description ? `<div class="project-desc">${project.description}</div>` : '';
 
     card.innerHTML = `
       <div class="card-content">
@@ -300,12 +302,6 @@
 
     grid.appendChild(card);
   });
-
-  // 更新 footer 的 GitHub 链接
-  const githubLink = document.querySelector('.github-link');
-  githubLink.href = `https://github.com/${config.githubUsername}`;
-  githubLink.textContent = `GitHub@${config.githubUsername.split('weinuli')[0] || '星霜'}`;
-
 </script>
 
 </body>
