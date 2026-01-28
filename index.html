@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title></title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
   <style>
     :root {
-      /* 浅色主题（默认） */
       --bg: #faf8f5;
       --bg-secondary: #f5f1eb;
       --card: #ffffff;
@@ -29,7 +31,6 @@
       --shadow-hover: 0 4px 16px rgba(201, 118, 69, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
-    /* 深色主题 */
     [data-theme="dark"] {
       --bg: #1a1816;
       --bg-secondary: #232120;
@@ -52,30 +53,11 @@
       --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-    }
-
-    ::-webkit-scrollbar { 
-      width: 12px; 
-    }
-    
-    ::-webkit-scrollbar-track { 
-      background: var(--bg);
-      border-left: 1px solid var(--border);
-    }
-    
-    ::-webkit-scrollbar-thumb { 
-      background: var(--accent);
-      border-radius: 6px;
-      border: 3px solid var(--bg);
-    }
-    
-    ::-webkit-scrollbar-thumb:hover { 
-      background: var(--accent-dark);
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: var(--bg); border-left: 1px solid var(--border); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 6px; border: 3px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Noto Sans SC', sans-serif;
@@ -89,14 +71,10 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* 背景纹理 */
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background-image: 
         radial-gradient(circle at 25% 25%, var(--accent-subtle) 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, var(--accent-subtle) 0%, transparent 50%);
@@ -114,13 +92,10 @@
       z-index: 1;
     }
 
-    /* 主题切换按钮 */
     .theme-toggle {
       position: fixed;
-      top: 2rem;
-      right: 2rem;
-      width: 50px;
-      height: 50px;
+      top: 2rem; right: 2rem;
+      width: 50px; height: 50px;
       border-radius: 50%;
       background: var(--card);
       border: 2px solid var(--border);
@@ -141,22 +116,14 @@
       box-shadow: var(--shadow-hover);
     }
 
-    .theme-toggle:active {
-      transform: scale(0.95);
-    }
+    .theme-toggle:active { transform: scale(0.95); }
 
-    header { 
-      text-align: center; 
-      padding: 5rem 0 3rem;
-      margin-bottom: 3.5rem;
-      position: relative;
-    }
+    header { text-align: center; padding: 5rem 0 3rem; margin-bottom: 3.5rem; position: relative; }
 
     header::after {
       content: '';
       display: block;
-      width: 60px;
-      height: 3px;
+      width: 60px; height: 3px;
       background: linear-gradient(90deg, var(--accent), var(--accent-light));
       margin: 2rem auto 0;
       border-radius: 2px;
@@ -169,7 +136,6 @@
       color: var(--text);
       margin-bottom: 1.2rem;
       line-height: 1.2;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
     }
 
     .subtitle {
@@ -212,9 +178,7 @@
       margin-bottom: 1rem;
     }
     
-    .site-info p:last-child { 
-      margin-bottom: 0; 
-    }
+    .site-info p:last-child { margin-bottom: 0; }
 
     .projects-grid {
       display: grid;
@@ -235,9 +199,7 @@
     .card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 4px;
       background: linear-gradient(90deg, var(--accent), var(--accent-light));
       transform: scaleX(0);
@@ -245,9 +207,7 @@
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .card:hover::before {
-      transform: scaleX(1);
-    }
+    .card:hover::before { transform: scaleX(1); }
 
     .card:hover {
       transform: translateY(-5px);
@@ -256,9 +216,7 @@
       background: var(--card-hover);
     }
 
-    .card-content { 
-      padding: 2rem 1.8rem;
-    }
+    .card-content { padding: 2rem 1.8rem; }
 
     .project-title {
       font-size: 1.4rem;
@@ -291,10 +249,8 @@
     .project-link::before, .multi-links a::before {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
+      bottom: 0; left: 0;
+      width: 100%; height: 2px;
       background: var(--accent);
       transform: scaleX(0);
       transform-origin: right;
@@ -306,9 +262,7 @@
       transform-origin: left;
     }
 
-    .project-link:hover, .multi-links a:hover {
-      color: var(--accent-dark);
-    }
+    .project-link:hover, .multi-links a:hover { color: var(--accent-dark); }
 
     .project-link::after, .multi-links a::after {
       content: '→';
@@ -317,9 +271,7 @@
       font-size: 1.1rem;
     }
 
-    .project-link:hover::after, .multi-links a:hover::after {
-      transform: translateX(4px);
-    }
+    .project-link:hover::after, .multi-links a:hover::after { transform: translateX(4px); }
 
     .multi-links {
       margin-top: 1.5rem;
@@ -341,8 +293,7 @@
     footer::before {
       content: '✦';
       position: absolute;
-      top: -12px;
-      left: 50%;
+      top: -12px; left: 50%;
       transform: translateX(-50%);
       background: var(--bg);
       padding: 0 1rem;
@@ -350,9 +301,7 @@
       font-size: 1.2rem;
     }
 
-    footer p {
-      margin-bottom: 0.5rem;
-    }
+    footer p { margin-bottom: 0.5rem; }
 
     .github-link {
       color: var(--accent);
@@ -365,235 +314,198 @@
     .github-link::after {
       content: '';
       position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 1px;
+      bottom: -2px; left: 0;
+      width: 100%; height: 1px;
       background: var(--accent);
       transform: scaleX(0);
       transition: transform 0.3s ease;
     }
 
-    .github-link:hover { 
-      color: var(--accent-dark); 
-    }
+    .github-link:hover { color: var(--accent-dark); }
+    .github-link:hover::after { transform: scaleX(1); }
 
-    .github-link:hover::after {
-      transform: scaleX(1);
-    }
-
-    /* 响应式设计 */
     @media (max-width: 768px) {
-      .theme-toggle {
-        top: 1rem;
-        right: 1rem;
-        width: 44px;
-        height: 44px;
-        font-size: 1.3rem;
-      }
-
-      .container {
-        padding: 1.5rem 1.5rem 4rem;
-      }
-
-      header { 
-        padding: 3rem 0 2rem;
-        margin-bottom: 2.5rem;
-      }
-
-      header::after {
-        width: 40px;
-        height: 2px;
-        margin-top: 1.5rem;
-      }
-
-      h1 { 
-        font-size: 2rem;
-        letter-spacing: -1px;
-      }
-
-      .subtitle {
-        font-size: 0.85rem;
-        letter-spacing: 1.5px;
-      }
-
-      .projects-grid { 
-        gap: 1.5rem;
-        grid-template-columns: 1fr;
-      }
-
-      .card-content { 
-        padding: 1.8rem 1.5rem; 
-      }
-
-      .site-info { 
-        padding: 1.8rem 1.5rem;
-        margin-bottom: 2.5rem;
-      }
-
-      .site-info h3 {
-        font-size: 1.2rem;
-      }
-
-      footer {
-        padding: 4rem 0 2rem;
-        margin-top: 3rem;
-      }
+      .theme-toggle { top: 1rem; right: 1rem; width: 44px; height: 44px; font-size: 1.3rem; }
+      .container { padding: 1.5rem 1.5rem 4rem; }
+      header { padding: 3rem 0 2rem; margin-bottom: 2.5rem; }
+      header::after { width: 40px; height: 2px; margin-top: 1.5rem; }
+      h1 { font-size: 2rem; letter-spacing: -1px; }
+      .subtitle { font-size: 0.85rem; letter-spacing: 1.5px; }
+      .projects-grid { gap: 1.5rem; grid-template-columns: 1fr; }
+      .card-content { padding: 1.8rem 1.5rem; }
+      .site-info { padding: 1.8rem 1.5rem; margin-bottom: 2.5rem; }
+      .site-info h3 { font-size: 1.2rem; }
+      footer { padding: 4rem 0 2rem; margin-top: 3rem; }
     }
 
     @media (max-width: 480px) {
-      h1 { 
-        font-size: 1.75rem; 
-      }
-
-      .subtitle {
-        font-size: 0.8rem;
-      }
-
-      .project-title { 
-        font-size: 1.25rem; 
-      }
-
-      .project-desc {
-        font-size: 0.9rem;
-      }
-
-      .card-content {
-        padding: 1.5rem 1.2rem;
-      }
-
-      .site-info {
-        padding: 1.5rem 1.2rem;
-      }
+      h1 { font-size: 1.75rem; }
+      .subtitle { font-size: 0.8rem; }
+      .project-title { font-size: 1.25rem; }
+      .project-desc { font-size: 0.9rem; }
+      .card-content { padding: 1.5rem 1.2rem; }
+      .site-info { padding: 1.5rem 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- 主题切换按钮 -->
 <button class="theme-toggle" aria-label="切换主题" title="切换深浅色主题">
   <span class="theme-icon">☀️</span>
 </button>
 
 <div class="container">
-
   <header>
     <h1></h1>
     <div class="subtitle"></div>
   </header>
-
   <main class="projects-grid"></main>
-
   <footer>
-    <p>© <span id="copyright-start"></span>–<span id="current-year"></span> 
+    <p>© <span id="copyright-start"></span>–<span id="current-year"></span> xingshuang • Powered by Cloudflare</p>
+    <p style="margin-top:1rem;">
       <a id="github-link" href="#" target="_blank" class="github-link"></a>
     </p>
-
   </footer>
-
 </div>
 
-<script type="module">
-  import { config } from './config.js';
+<script>
+  // ============================================================
+  // 终极解决方案：通过 fetch API 获取 config.js，每次都重新请求
+  // 添加 cache: 'reload' 强制绕过所有缓存
+  // ============================================================
+  
+  (async function() {
+    let config;
+    
+    try {
+      // 使用 fetch 获取 config.js，强制 reload 绕过缓存
+      const response = await fetch('./config.js', {
+        cache: 'reload',  // 强制重新验证，不使用缓存
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      });
+      
+      const configText = await response.text();
+      
+      // 移除 export 语句，提取配置对象
+      const configCode = configText
+        .replace(/export\s+const\s+config\s+=\s+/, 'window.__CONFIG__ = ')
+        .replace(/export\s+\{[^}]+\}/, '');
+      
+      // 执行代码
+      eval(configCode);
+      config = window.__CONFIG__;
+      
+    } catch (error) {
+      console.error('Failed to load config:', error);
+      // 降级方案：使用默认配置
+      config = {
+        siteTitle: 'My Site',
+        siteSubtitle: 'Welcome',
+        githubUsername: '',
+        copyrightStartYear: '2024',
+        siteInfo: { enabled: false },
+        projects: []
+      };
+    }
 
-  // ========== 主题切换功能 ==========
-  const themeToggle = document.querySelector('.theme-toggle');
-  const themeIcon = document.querySelector('.theme-icon');
-  const html = document.documentElement;
+    // ============================================================
+    // 主题切换
+    // ============================================================
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    const html = document.documentElement;
 
-  // 从localStorage读取保存的主题，如果没有则使用系统偏好
-  const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
-  // 设置初始主题
-  html.setAttribute('data-theme', currentTheme);
-  themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+    html.setAttribute('data-theme', currentTheme);
+    themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
 
-  // 主题切换事件
-  themeToggle.addEventListener('click', () => {
-    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', newTheme);
-    themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-    localStorage.setItem('theme', newTheme);
-  });
-
-  // 监听系统主题变化（可选）
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      const newTheme = e.matches ? 'dark' : 'light';
+    themeToggle.addEventListener('click', () => {
+      const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', newTheme);
       themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-    }
-  });
+      localStorage.setItem('theme', newTheme);
+    });
 
-  // ========== 网站内容渲染 ==========
-  document.title = `${config.siteTitle} | xingshuang`;
-
-  document.querySelector('h1').textContent = config.siteTitle;
-  document.querySelector('.subtitle').textContent = config.siteSubtitle;
-
-  if (config.copyrightStartYear) {
-    document.getElementById('copyright-start').textContent = config.copyrightStartYear;
-  }
-  document.getElementById('current-year').textContent = new Date().getFullYear();
-
-  const githubLink = document.getElementById('github-link');
-  if (config.githubUsername) {
-    githubLink.href = `https://github.com/${config.githubUsername}`;
-    githubLink.textContent = `GitHub@${config.githubUsername}`;
-  }
-
-  if (config.siteInfo?.enabled) {
-    let hasContent = config.siteInfo.title || (config.siteInfo.paragraphs && config.siteInfo.paragraphs.length > 0);
-
-    if (hasContent) {
-      const infoContainer = document.createElement('div');
-      infoContainer.className = 'site-info';
-
-      let html = '';
-      if (config.siteInfo.title) html += `<h3>${config.siteInfo.title}</h3>`;
-      if (config.siteInfo.paragraphs && Array.isArray(config.siteInfo.paragraphs)) {
-        config.siteInfo.paragraphs.forEach(p => html += `<p>${p}</p>`);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        const newTheme = e.matches ? 'dark' : 'light';
+        html.setAttribute('data-theme', newTheme);
+        themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
       }
-      infoContainer.innerHTML = html;
+    });
 
-      document.querySelector('header').insertAdjacentElement('afterend', infoContainer);
+    // ============================================================
+    // 渲染网站内容
+    // ============================================================
+    document.title = `${config.siteTitle} | xingshuang`;
+    document.querySelector('h1').textContent = config.siteTitle;
+    document.querySelector('.subtitle').textContent = config.siteSubtitle;
+
+    if (config.copyrightStartYear) {
+      document.getElementById('copyright-start').textContent = config.copyrightStartYear;
     }
-  }
+    document.getElementById('current-year').textContent = new Date().getFullYear();
 
-  const grid = document.querySelector('.projects-grid');
-  config.projects.forEach(project => {
-    const card = document.createElement('div');
-    card.className = 'card';
+    const githubLink = document.getElementById('github-link');
+    if (config.githubUsername) {
+      githubLink.href = `https://github.com/${config.githubUsername}`;
+      githubLink.textContent = `GitHub@${config.githubUsername}`;
+    }
 
-    let linksHTML = '';
-    if (project.links && project.links.length > 0) {
-      linksHTML = '<div class="multi-links">';
-      project.links.forEach(link => {
-        linksHTML += `<a href="${link.url}" target="_blank" rel="noopener"><span>${link.display}</span></a>`;
-      });
-      linksHTML += '</div>';
-    } else if (project.url) {
-      linksHTML = `
-        <a href="${project.url}" target="_blank" rel="noopener" class="project-link">
-          <span>${project.display || project.url.replace(/^https?:\/\//, '')}</span>
-        </a>
+    if (config.siteInfo?.enabled) {
+      let hasContent = config.siteInfo.title || (config.siteInfo.paragraphs && config.siteInfo.paragraphs.length > 0);
+      if (hasContent) {
+        const infoContainer = document.createElement('div');
+        infoContainer.className = 'site-info';
+        let html = '';
+        if (config.siteInfo.title) html += `<h3>${config.siteInfo.title}</h3>`;
+        if (config.siteInfo.paragraphs && Array.isArray(config.siteInfo.paragraphs)) {
+          config.siteInfo.paragraphs.forEach(p => html += `<p>${p}</p>`);
+        }
+        infoContainer.innerHTML = html;
+        document.querySelector('header').insertAdjacentElement('afterend', infoContainer);
+      }
+    }
+
+    const grid = document.querySelector('.projects-grid');
+    config.projects.forEach(project => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      let linksHTML = '';
+      if (project.links && project.links.length > 0) {
+        linksHTML = '<div class="multi-links">';
+        project.links.forEach(link => {
+          linksHTML += `<a href="${link.url}" target="_blank" rel="noopener"><span>${link.display}</span></a>`;
+        });
+        linksHTML += '</div>';
+      } else if (project.url) {
+        linksHTML = `
+          <a href="${project.url}" target="_blank" rel="noopener" class="project-link">
+            <span>${project.display || project.url.replace(/^https?:\/\//, '')}</span>
+          </a>
+        `;
+      }
+
+      const descHTML = project.description ? `<div class="project-desc">${project.description}</div>` : '';
+
+      card.innerHTML = `
+        <div class="card-content">
+          <div class="project-title">${project.title}</div>
+          ${descHTML}
+          ${linksHTML}
+        </div>
       `;
-    }
 
-    const descHTML = project.description ? `<div class="project-desc">${project.description}</div>` : '';
-
-    card.innerHTML = `
-      <div class="card-content">
-        <div class="project-title">${project.title}</div>
-        ${descHTML}
-        ${linksHTML}
-      </div>
-    `;
-
-    grid.appendChild(card);
-  });
+      grid.appendChild(card);
+    });
+  })();
 </script>
 
 </body>
