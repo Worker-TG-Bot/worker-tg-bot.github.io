@@ -7,18 +7,19 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
   <style>
     :root {
-      /* 温暖的奶油色调 */
+      /* 温暖的配色方案 */
       --bg: #faf8f5;
-      --bg-secondary: #f5f3ef;
+      --bg-secondary: #f5f1eb;
       
       /* 卡片色 */
       --card: #ffffff;
-      --card-hover: #fefefe;
+      --card-hover: #fffdf9;
 
-      /* 强调色：温暖的橙棕色 */
+      /* 强调色：温暖的橙棕色系 */
       --accent: #c97645;
       --accent-light: #d88f61;
       --accent-dark: #b05e2f;
+      --accent-subtle: #f4e8dd;
 
       /* 文字色 */
       --text: #2a2826;
@@ -30,64 +31,121 @@
       --border-hover: #d4cfc7;
 
       /* 阴影 */
-      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
-      --shadow-hover: 0 4px 16px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+      --shadow: 0 1px 3px rgba(201, 118, 69, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 4px 16px rgba(201, 118, 69, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
 
-    ::-webkit-scrollbar { width:10px; }
-    ::-webkit-scrollbar-track { background:var(--bg); }
-    ::-webkit-scrollbar-thumb { background:var(--accent); border-radius:5px; }
-    ::-webkit-scrollbar-thumb:hover { background:var(--accent-dark); }
+    ::-webkit-scrollbar { 
+      width: 12px; 
+    }
+    
+    ::-webkit-scrollbar-track { 
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+    }
+    
+    ::-webkit-scrollbar-thumb { 
+      background: var(--accent);
+      border-radius: 6px;
+      border: 3px solid var(--bg);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover { 
+      background: var(--accent-dark);
+    }
 
     body {
-      font-family: 'Georgia', 'Noto Serif SC', serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Noto Sans SC', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 微妙的背景纹理 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, var(--accent-subtle) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, var(--accent-subtle) 0%, transparent 50%);
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
     }
 
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 2rem 6rem;
+      position: relative;
+      z-index: 1;
     }
 
     header { 
       text-align: center; 
       padding: 5rem 0 3rem;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    /* 标题装饰线 */
+    header::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      margin: 2rem auto 0;
+      border-radius: 2px;
     }
 
     h1 {
       font-size: clamp(2.8rem, 7vw, 4.5rem);
-      font-weight: 400;
-      letter-spacing: -1px;
+      font-weight: 600;
+      letter-spacing: -1.5px;
       color: var(--text);
       margin-bottom: 1.2rem;
-      line-height: 1.2;
-      font-family: 'Playfair Display', 'Noto Serif SC', serif;
+      line-height: 1.15;
+      font-family: 'Georgia', 'Noto Serif SC', serif;
     }
 
     .subtitle {
       font-size: 1rem;
       color: var(--text-secondary);
       letter-spacing: 2px;
-      font-weight: 400;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
     }
 
     .site-info {
       background: var(--card);
       border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
       border-radius: 8px;
-      margin: 0 auto 3.5rem;
+      margin: 0 auto 4rem;
       max-width: 1100px;
       padding: 2rem 2.5rem;
       box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .site-info:hover {
+      box-shadow: var(--shadow-hover);
+      border-left-color: var(--accent-dark);
     }
 
     .site-info h3 {
@@ -95,7 +153,7 @@
       margin-bottom: 1.2rem;
       color: var(--accent-dark);
       font-weight: 600;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: -0.3px;
     }
 
     .site-info p {
@@ -104,7 +162,10 @@
       color: var(--text-secondary);
       margin-bottom: 1rem;
     }
-    .site-info p:last-child { margin-bottom: 0; }
+    
+    .site-info p:last-child { 
+      margin-bottom: 0; 
+    }
 
     .projects-grid {
       display: grid;
@@ -115,16 +176,36 @@
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: all 0.35s ease;
+      border-radius: 10px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: var(--shadow);
       position: relative;
+      overflow: hidden;
+    }
+
+    /* 卡片顶部装饰 */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
     }
 
     .card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
       border-color: var(--accent);
       box-shadow: var(--shadow-hover);
+      background: var(--card-hover);
     }
 
     .card-content { 
@@ -136,7 +217,8 @@
       font-weight: 600;
       color: var(--text);
       margin-bottom: 0.8rem;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
     }
 
     .project-desc {
@@ -154,19 +236,38 @@
       transition: all 0.25s ease;
       display: inline-flex;
       align-items: center;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      border-bottom: 2px solid transparent;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    /* 链接下划线效果 */
+    .project-link::before, .multi-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .project-link:hover::before, .multi-links a:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
     .project-link:hover, .multi-links a:hover {
       color: var(--accent-dark);
-      border-bottom-color: var(--accent);
     }
 
     .project-link::after, .multi-links a::after {
       content: '→';
       margin-left: 0.4rem;
       transition: transform 0.25s ease;
+      font-size: 1.1rem;
     }
 
     .project-link:hover::after, .multi-links a:hover::after {
@@ -185,31 +286,148 @@
       padding: 5rem 0 3rem;
       color: var(--text-tertiary);
       font-size: 0.9rem;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       border-top: 1px solid var(--border);
-      margin-top: 3rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    /* 页脚装饰 */
+    footer::before {
+      content: '✦';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg);
+      padding: 0 1rem;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
     }
 
     .github-link {
       color: var(--accent);
       text-decoration: none;
-      transition: color 0.25s;
+      transition: all 0.25s;
       font-weight: 500;
+      position: relative;
+    }
+
+    .github-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
     }
 
     .github-link:hover { 
       color: var(--accent-dark); 
     }
 
+    .github-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* 响应式设计 */
     @media (max-width: 768px) {
-      header { padding: 3rem 0 2rem; }
-      h1 { font-size: 2.5rem; }
+      .container {
+        padding: 1.5rem 1.5rem 4rem;
+      }
+
+      header { 
+        padding: 3rem 0 2rem;
+        margin-bottom: 2.5rem;
+      }
+
+      header::after {
+        width: 40px;
+        height: 2px;
+        margin-top: 1.5rem;
+      }
+
+      h1 { 
+        font-size: 2.2rem;
+        letter-spacing: -1px;
+      }
+
+      .subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+      }
+
       .projects-grid { 
         gap: 1.5rem;
         grid-template-columns: 1fr;
       }
-      .card-content { padding: 1.8rem 1.5rem; }
-      .site-info { padding: 1.8rem; }
+
+      .card-content { 
+        padding: 1.8rem 1.5rem; 
+      }
+
+      .site-info { 
+        padding: 1.8rem 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .site-info h3 {
+        font-size: 1.2rem;
+      }
+
+      footer {
+        padding: 4rem 0 2rem;
+        margin-top: 3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { 
+        font-size: 1.8rem; 
+      }
+
+      .subtitle {
+        font-size: 0.8rem;
+      }
+
+      .project-title { 
+        font-size: 1.25rem; 
+      }
+
+      .project-desc {
+        font-size: 0.9rem;
+      }
+
+      .card-content {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .site-info {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+
+    /* 打印样式优化 */
+    @media print {
+      body {
+        background: white;
+      }
+
+      .card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+
+      .project-link::after, .multi-links a::after {
+        content: ' (' attr(href) ')';
+      }
     }
   </style>
 </head>
