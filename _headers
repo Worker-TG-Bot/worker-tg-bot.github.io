@@ -1,0 +1,8 @@
+/config.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=300, must-revalidate   # 所有 JS 5分钟
+
+/*
+  Cache-Control: public, max-age=0, must-revalidate     # HTML 等不缓存
