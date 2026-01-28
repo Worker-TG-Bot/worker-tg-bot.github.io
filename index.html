@@ -7,32 +7,49 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
   <style>
     :root {
-      /* 温暖的配色方案 */
+      /* 浅色主题（默认） */
       --bg: #faf8f5;
       --bg-secondary: #f5f1eb;
-      
-      /* 卡片色 */
       --card: #ffffff;
       --card-hover: #fffdf9;
-
-      /* 强调色：温暖的橙棕色系 */
+      
       --accent: #c97645;
       --accent-light: #d88f61;
       --accent-dark: #b05e2f;
       --accent-subtle: #f4e8dd;
-
-      /* 文字色 */
+      
       --text: #2a2826;
       --text-secondary: #6b6662;
       --text-tertiary: #9a9591;
-
-      /* 边框 */
+      
       --border: #e8e5e0;
       --border-hover: #d4cfc7;
-
-      /* 阴影 */
+      
       --shadow: 0 1px 3px rgba(201, 118, 69, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
       --shadow-hover: 0 4px 16px rgba(201, 118, 69, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    /* 深色主题 */
+    [data-theme="dark"] {
+      --bg: #1a1816;
+      --bg-secondary: #232120;
+      --card: #2a2826;
+      --card-hover: #2f2d2b;
+      
+      --accent: #d88f61;
+      --accent-light: #e6a882;
+      --accent-dark: #c97645;
+      --accent-subtle: #3d3330;
+      
+      --text: #f5f3f0;
+      --text-secondary: #c4bfba;
+      --text-tertiary: #9a9591;
+      
+      --border: #3a3735;
+      --border-hover: #4a4542;
+      
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
     * { 
@@ -69,9 +86,10 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* 微妙的背景纹理 */
+    /* 背景纹理 */
     body::before {
       content: '';
       position: fixed;
@@ -85,6 +103,7 @@
       opacity: 0.3;
       pointer-events: none;
       z-index: 0;
+      transition: opacity 0.3s ease;
     }
 
     .container {
@@ -95,6 +114,37 @@
       z-index: 1;
     }
 
+    /* 主题切换按钮 */
+    .theme-toggle {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px solid var(--border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      user-select: none;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
     header { 
       text-align: center; 
       padding: 5rem 0 3rem;
@@ -102,7 +152,6 @@
       position: relative;
     }
 
-    /* 标题装饰线 */
     header::after {
       content: '';
       display: block;
@@ -114,13 +163,13 @@
     }
 
     h1 {
-      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-size: clamp(2.5rem, 6vw, 4rem);
       font-weight: 600;
       letter-spacing: -1.5px;
       color: var(--text);
       margin-bottom: 1.2rem;
-      line-height: 1.15;
-      font-family: 'Georgia', 'Noto Serif SC', serif;
+      line-height: 1.2;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
     }
 
     .subtitle {
@@ -183,7 +232,6 @@
       overflow: hidden;
     }
 
-    /* 卡片顶部装饰 */
     .card::before {
       content: '';
       position: absolute;
@@ -240,7 +288,6 @@
       padding-bottom: 2px;
     }
 
-    /* 链接下划线效果 */
     .project-link::before, .multi-links a::before {
       content: '';
       position: absolute;
@@ -291,7 +338,6 @@
       position: relative;
     }
 
-    /* 页脚装饰 */
     footer::before {
       content: '✦';
       position: absolute;
@@ -338,6 +384,14 @@
 
     /* 响应式设计 */
     @media (max-width: 768px) {
+      .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+
       .container {
         padding: 1.5rem 1.5rem 4rem;
       }
@@ -354,7 +408,7 @@
       }
 
       h1 { 
-        font-size: 2.2rem;
+        font-size: 2rem;
         letter-spacing: -1px;
       }
 
@@ -389,7 +443,7 @@
 
     @media (max-width: 480px) {
       h1 { 
-        font-size: 1.8rem; 
+        font-size: 1.75rem; 
       }
 
       .subtitle {
@@ -412,26 +466,14 @@
         padding: 1.5rem 1.2rem;
       }
     }
-
-    /* 打印样式优化 */
-    @media print {
-      body {
-        background: white;
-      }
-
-      .card {
-        break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #ddd;
-      }
-
-      .project-link::after, .multi-links a::after {
-        content: ' (' attr(href) ')';
-      }
-    }
   </style>
 </head>
 <body>
+
+<!-- 主题切换按钮 -->
+<button class="theme-toggle" aria-label="切换主题" title="切换深浅色主题">
+  <span class="theme-icon">☀️</span>
+</button>
 
 <div class="container">
 
@@ -443,10 +485,10 @@
   <main class="projects-grid"></main>
 
   <footer>
-    <p>© <span id="copyright-start"></span>–<span id="current-year"></span> xingshuang • Powered by Cloudflare</p>
-    <p style="margin-top:1rem;">
+    <p>© <span id="copyright-start"></span>–<span id="current-year"></span> 
       <a id="github-link" href="#" target="_blank" class="github-link"></a>
     </p>
+
   </footer>
 
 </div>
@@ -454,6 +496,38 @@
 <script type="module">
   import { config } from './config.js';
 
+  // ========== 主题切换功能 ==========
+  const themeToggle = document.querySelector('.theme-toggle');
+  const themeIcon = document.querySelector('.theme-icon');
+  const html = document.documentElement;
+
+  // 从localStorage读取保存的主题，如果没有则使用系统偏好
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+  // 设置初始主题
+  html.setAttribute('data-theme', currentTheme);
+  themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+
+  // 主题切换事件
+  themeToggle.addEventListener('click', () => {
+    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('theme', newTheme);
+  });
+
+  // 监听系统主题变化（可选）
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+    }
+  });
+
+  // ========== 网站内容渲染 ==========
   document.title = `${config.siteTitle} | xingshuang`;
 
   document.querySelector('h1').textContent = config.siteTitle;
