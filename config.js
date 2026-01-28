@@ -20,8 +20,8 @@ export const config = {
   projects: [
     {
       title: "AI生成GitHub主页",
-      url: "https://myedge.loushi.dpdns.org",
-      display: "myedge.loushi.dpdns.org",
+      url: "https://myedge.loushi.ccwu.cc",
+      display: "myedge.loushi.ccwu.cc",
       description: "使用 AI 自动生成个性化 GitHub 个人主页"
     },
     {
@@ -54,13 +54,13 @@ export const config = {
     },
     {
       title: "赛博占卜",
-      url: "https://cyber-fortune.bxiao.workers.dev/",
+      url: "https://cyber-fortune.loushi.ccwu.cc/",
       display: "cyber-fortune",
       description: "随机生成赛博风格运势"
     },
     {
       title: "夸夸墙",
-      url: "https://first-praise-wall.bxiao.workers.dev",
+      url: "https://first-praise-wall.loushi.ccwu.cc",
       display: "first-praise-wall",
       description: "收集全世界对你的夸夸留言"
     },
