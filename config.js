@@ -5,7 +5,7 @@ export const config = {
 
   githubUsername: "xiaobaiweinuli",
 
-  copyrightStartYear: "2026",
+  copyrightStartYear: "2025",
 
   // 站点说明区域开关 + 内容
   siteInfo: {
