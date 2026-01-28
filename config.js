@@ -26,7 +26,7 @@ export const config = {
     },
     {
       title: "Gmail → Telegram 通知",
-      url: "https://www.loushi.bbroot.com/tgemailbot/",
+      url: "https://www.loushi.de5.net/tgemailbot/",
       display: "tgemailbot",
       description: "将 Gmail 新邮件实时推送到 Telegram"
     },
@@ -44,7 +44,7 @@ export const config = {
     },
     {
       title: "青龙面板TG通知机器人",
-      url: "https://www.loushi.bbroot.com/qinglong-tgbot/",
+      url: "https://www.loushi.de5.net/qinglong-tgbot/",
       display: "qinglong-tgbot"
     },
     {
