@@ -5,7 +5,17 @@ export const config = {
 
   githubUsername: "xiaobaiweinuli",
 
-  copyrightStartYear: "2025",
+  copyrightStartYear: "2026",
+
+  // 站点说明区域开关 + 内容
+  siteInfo: {
+    enabled: true,  // ← 改成 false 即可完全关闭说明区域（不占位）
+    title: "关于这个页面",
+    paragraphs: [
+      "这里收集了我近年来折腾的一些小项目，大部分是工具、实验性质的玩具，或者半夜突发奇想搞出来的东西。",
+      "你可以直接点击卡片中的链接访问。如果某个链接打不开或功能异常，欢迎通过 GitHub 提 issue，或者在我的频道留言告诉我。"
+    ]
+  },
 
   projects: [
     {
@@ -24,13 +34,13 @@ export const config = {
       title: "Telegram API 代理",
       url: "https://tgbotapi.gongzhonghao.dpdns.org/",
       display: "tgbotapi.gongzhonghao.dpdns.org"
-      // 可以选择不写 description
+      // description 可选，不写就不显示
     },
     {
       title: "导航 · 收藏夹",
       url: "https://nav.xingshuang.xyz/",
       display: "nav.xingshuang.xyz",
-      description: "TG频道信息"
+      description: "个人常用网站导航与书签集合"
     },
     {
       title: "青龙面板TG通知机器人",
@@ -70,7 +80,7 @@ export const config = {
         { url: "https://broadcastchannel-2xb.pages.dev/", display: "broadcastchannel-2xb.pages.dev" },
         { url: "https://tg.xingshuang.xyz/", display: "tg.xingshuang.xyz" }
       ],
-      description: "Telegram 频道信息转换成网页微博"
+      description: "Telegram 频道内容转换成网页微博"
     },
     {
       title: "API代理服务",
@@ -78,10 +88,10 @@ export const config = {
       display: "xingshuang.hidns.vip"
     },
     {
-      title: "电子礼谱",
+      title: "电子礼譜",
       url: "https://dianzilipu.netlify.app/",
       display: "dianzilipu.netlify.app",
-      description: "在线编辑礼谱"
+      description: "在线的礼譜记录编辑"
     }
   ]
 };
